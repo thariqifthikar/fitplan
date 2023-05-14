@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE862CB92A1175E600BC43C3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE862CB82A1175E600BC43C3 /* UserModel.swift */; };
+		EE862CBB2A11772000BC43C3 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE862CBA2A11772000BC43C3 /* WorkoutModel.swift */; };
+		EE862CBD2A1177C300BC43C3 /* WorkoutDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE862CBC2A1177C300BC43C3 /* WorkoutDetailModel.swift */; };
+		EE862CBF2A117B0100BC43C3 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE862CBE2A117B0100BC43C3 /* ScheduleModel.swift */; };
+		EE862CC12A117FD600BC43C3 /* ProgressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE862CC02A117FD600BC43C3 /* ProgressModel.swift */; };
 		EEB46DED2A0FF4B200165FB9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = EEB46DEC2A0FF4B200165FB9 /* FirebaseAnalytics */; };
 		EEB46DEF2A0FF4B200165FB9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EEB46DEE2A0FF4B200165FB9 /* FirebaseAuth */; };
 		EEB46DF12A0FF4B200165FB9 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = EEB46DF02A0FF4B200165FB9 /* FirebaseDatabase */; };
@@ -59,6 +64,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EE862CB82A1175E600BC43C3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		EE862CBA2A11772000BC43C3 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
+		EE862CBC2A1177C300BC43C3 /* WorkoutDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailModel.swift; sourceTree = "<group>"; };
+		EE862CBE2A117B0100BC43C3 /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
+		EE862CC02A117FD600BC43C3 /* ProgressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressModel.swift; sourceTree = "<group>"; };
 		EEF6AC112A10F32C00DA9E86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EEF6AC132A11223300DA9E86 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EEF6AC152A11224300DA9E86 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -141,6 +151,11 @@
 		EEB46E032A103A9600165FB9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EE862CB82A1175E600BC43C3 /* UserModel.swift */,
+				EE862CBA2A11772000BC43C3 /* WorkoutModel.swift */,
+				EE862CBC2A1177C300BC43C3 /* WorkoutDetailModel.swift */,
+				EE862CBE2A117B0100BC43C3 /* ScheduleModel.swift */,
+				EE862CC02A117FD600BC43C3 /* ProgressModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -364,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE862CC12A117FD600BC43C3 /* ProgressModel.swift in Sources */,
 				EEF6AC1E2A1122C700DA9E86 /* CustomSchedules.swift in Sources */,
 				EEF6AC1C2A11228D00DA9E86 /* UserDetailsView.swift in Sources */,
 				EEF6AC202A1122E700DA9E86 /* ProfileView.swift in Sources */,
@@ -373,13 +389,17 @@
 				EEFB61462A0FDC9A00C42223 /* HomeViewController.swift in Sources */,
 				EEF6AC2C2A1123C600DA9E86 /* ProfileViewController.swift in Sources */,
 				EEF6AC2A2A1123B500DA9E86 /* CustomScheduleViewController.swift in Sources */,
+				EE862CBB2A11772000BC43C3 /* WorkoutModel.swift in Sources */,
 				EEF6AC1A2A11227200DA9E86 /* DetailsView.swift in Sources */,
+				EE862CB92A1175E600BC43C3 /* UserModel.swift in Sources */,
 				EEF6AC2F2A11243500DA9E86 /* TabBarViewController.swift in Sources */,
 				EEF6AC392A11271B00DA9E86 /* ProgressView.swift in Sources */,
 				EEF6AC362A11270200DA9E86 /* ProgressViewController.swift in Sources */,
 				EEF6AC162A11224300DA9E86 /* RegisterView.swift in Sources */,
 				EEFB61422A0FDC9A00C42223 /* AppDelegate.swift in Sources */,
+				EE862CBF2A117B0100BC43C3 /* ScheduleModel.swift in Sources */,
 				EEF6AC182A11226500DA9E86 /* HomeView.swift in Sources */,
+				EE862CBD2A1177C300BC43C3 /* WorkoutDetailModel.swift in Sources */,
 				EEF6AC142A11223300DA9E86 /* LoginView.swift in Sources */,
 				EEFB61442A0FDC9A00C42223 /* SceneDelegate.swift in Sources */,
 				EEF6AC262A11239300DA9E86 /* DetailsViewController.swift in Sources */,
@@ -482,7 +502,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -536,7 +556,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
