@@ -10,8 +10,8 @@ import FirebaseFirestore
 
 final class FirebaseDBHandler{
     
-    let shared = FirebaseDBHandler()
-    let db = Firestore.firestore()
+    static let shared = FirebaseDBHandler()
+    private let db = Firestore.firestore()
     
     init(){}
     
@@ -41,6 +41,12 @@ final class FirebaseDBHandler{
         }
         
         //insert code to update user
+    }
+    
+    func userHasDetails() -> Bool {
+        let result = false
+        
+        return result
     }
     
     

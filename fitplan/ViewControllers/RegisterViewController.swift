@@ -13,6 +13,8 @@ class RegisterViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Welcome onboard!"
+        
         view.backgroundColor = .systemBackground
         view.addSubview(regView)
         
@@ -28,11 +30,8 @@ class RegisterViewController: UIViewController{
         regView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
     }
     
-    @objc private func loginAction(){
-        navigationController?.removeFromParent()
-    }
-    
     @objc private func registerAction(){
-        
+        let viewcontroller = DetailsViewController()
+        navigationController?.pushViewController(viewcontroller, animated: true)
     }
 }

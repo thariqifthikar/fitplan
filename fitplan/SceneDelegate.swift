@@ -23,15 +23,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewcontroller: UIViewController
         
         if(AuthHandler.shared.signedIn){
-            viewcontroller = TabBarViewController()
+            if(FirebaseDBHandler.shared.userHasDetails()){
+                viewcontroller = TabBarViewController()
+            }
+            else{
+                viewcontroller = DetailsViewController()
+            }
+            
         }
         else{
             let loginViewController = LoginViewController()
             loginViewController.navigationItem.largeTitleDisplayMode = .never
-            
+
             let navigationViewController = UINavigationController(rootViewController: loginViewController)
             navigationViewController.navigationBar.prefersLargeTitles = false
-            
+
             viewcontroller = navigationViewController
         }
         
