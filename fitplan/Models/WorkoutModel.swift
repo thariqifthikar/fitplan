@@ -11,4 +11,5 @@ struct WorkoutModel {
     let id: String
     let title: String
     let thumbURL: URL?
+    let description: String
 }

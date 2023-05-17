@@ -17,7 +17,6 @@ class TabBarViewController: UITabBarController {
         home.title = "Home"
         home.navigationItem.largeTitleDisplayMode = .always
         let navHome = UINavigationController(rootViewController: home)
-        navHome.navigationBar.prefersLargeTitles = true
         navHome.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 1)
         
         let schedules = CustomScheduleViewController()

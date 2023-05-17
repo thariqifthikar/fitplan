@@ -44,7 +44,7 @@ final class FirebaseDBHandler{
     }
     
     func userHasDetails() -> Bool {
-        let result = false
+        let result = true
         
         return result
     }

@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE07447E2A153A5100232A7D /* WorkoutViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE07447D2A153A5100232A7D /* WorkoutViewCell.swift */; };
 		EE862CB92A1175E600BC43C3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE862CB82A1175E600BC43C3 /* UserModel.swift */; };
 		EE862CBB2A11772000BC43C3 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE862CBA2A11772000BC43C3 /* WorkoutModel.swift */; };
 		EE862CBD2A1177C300BC43C3 /* WorkoutDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE862CBC2A1177C300BC43C3 /* WorkoutDetailModel.swift */; };
 		EE862CBF2A117B0100BC43C3 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE862CBE2A117B0100BC43C3 /* ScheduleModel.swift */; };
 		EE862CC12A117FD600BC43C3 /* ProgressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE862CC02A117FD600BC43C3 /* ProgressModel.swift */; };
+		EEA81DD02A154D9F007C6F5B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EEA81DCF2A154D9F007C6F5B /* Kingfisher */; };
 		EEB46DED2A0FF4B200165FB9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = EEB46DEC2A0FF4B200165FB9 /* FirebaseAnalytics */; };
 		EEB46DEF2A0FF4B200165FB9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EEB46DEE2A0FF4B200165FB9 /* FirebaseAuth */; };
 		EEB46DF12A0FF4B200165FB9 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = EEB46DF02A0FF4B200165FB9 /* FirebaseDatabase */; };
@@ -22,13 +24,13 @@
 		EEF6AC162A11224300DA9E86 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF6AC152A11224300DA9E86 /* RegisterView.swift */; };
 		EEF6AC182A11226500DA9E86 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF6AC172A11226500DA9E86 /* HomeView.swift */; };
 		EEF6AC1A2A11227200DA9E86 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF6AC192A11227200DA9E86 /* DetailsView.swift */; };
-		EEF6AC1C2A11228D00DA9E86 /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF6AC1B2A11228D00DA9E86 /* UserDetailsView.swift */; };
+		EEF6AC1C2A11228D00DA9E86 /* WorkoutDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF6AC1B2A11228D00DA9E86 /* WorkoutDetailsView.swift */; };
 		EEF6AC1E2A1122C700DA9E86 /* CustomSchedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF6AC1D2A1122C700DA9E86 /* CustomSchedules.swift */; };
 		EEF6AC202A1122E700DA9E86 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF6AC1F2A1122E700DA9E86 /* ProfileView.swift */; };
 		EEF6AC222A11236C00DA9E86 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF6AC212A11236C00DA9E86 /* LoginViewController.swift */; };
 		EEF6AC242A11237800DA9E86 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF6AC232A11237800DA9E86 /* RegisterViewController.swift */; };
 		EEF6AC262A11239300DA9E86 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF6AC252A11239300DA9E86 /* DetailsViewController.swift */; };
-		EEF6AC282A1123A200DA9E86 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF6AC272A1123A200DA9E86 /* UserDetailsViewController.swift */; };
+		EEF6AC282A1123A200DA9E86 /* WorkoutDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF6AC272A1123A200DA9E86 /* WorkoutDetailsViewController.swift */; };
 		EEF6AC2A2A1123B500DA9E86 /* CustomScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF6AC292A1123B500DA9E86 /* CustomScheduleViewController.swift */; };
 		EEF6AC2C2A1123C600DA9E86 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF6AC2B2A1123C600DA9E86 /* ProfileViewController.swift */; };
 		EEF6AC2F2A11243500DA9E86 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF6AC2E2A11243500DA9E86 /* TabBarViewController.swift */; };
@@ -64,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EE07447D2A153A5100232A7D /* WorkoutViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewCell.swift; sourceTree = "<group>"; };
 		EE862CB82A1175E600BC43C3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		EE862CBA2A11772000BC43C3 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 		EE862CBC2A1177C300BC43C3 /* WorkoutDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailModel.swift; sourceTree = "<group>"; };
@@ -74,13 +77,13 @@
 		EEF6AC152A11224300DA9E86 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		EEF6AC172A11226500DA9E86 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		EEF6AC192A11227200DA9E86 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
-		EEF6AC1B2A11228D00DA9E86 /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
+		EEF6AC1B2A11228D00DA9E86 /* WorkoutDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailsView.swift; sourceTree = "<group>"; };
 		EEF6AC1D2A1122C700DA9E86 /* CustomSchedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSchedules.swift; sourceTree = "<group>"; };
 		EEF6AC1F2A1122E700DA9E86 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		EEF6AC212A11236C00DA9E86 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EEF6AC232A11237800DA9E86 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		EEF6AC252A11239300DA9E86 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
-		EEF6AC272A1123A200DA9E86 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
+		EEF6AC272A1123A200DA9E86 /* WorkoutDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailsViewController.swift; sourceTree = "<group>"; };
 		EEF6AC292A1123B500DA9E86 /* CustomScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomScheduleViewController.swift; sourceTree = "<group>"; };
 		EEF6AC2B2A1123C600DA9E86 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EEF6AC2E2A11243500DA9E86 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEA81DD02A154D9F007C6F5B /* Kingfisher in Frameworks */,
 				EEB46DF12A0FF4B200165FB9 /* FirebaseDatabase in Frameworks */,
 				EEB46DF32A0FF4B200165FB9 /* FirebaseFirestore in Frameworks */,
 				EEB46DED2A0FF4B200165FB9 /* FirebaseAnalytics in Frameworks */,
@@ -140,10 +144,11 @@
 				EEF6AC152A11224300DA9E86 /* RegisterView.swift */,
 				EEF6AC172A11226500DA9E86 /* HomeView.swift */,
 				EEF6AC192A11227200DA9E86 /* DetailsView.swift */,
-				EEF6AC1B2A11228D00DA9E86 /* UserDetailsView.swift */,
+				EEF6AC1B2A11228D00DA9E86 /* WorkoutDetailsView.swift */,
 				EEF6AC1D2A1122C700DA9E86 /* CustomSchedules.swift */,
 				EEF6AC1F2A1122E700DA9E86 /* ProfileView.swift */,
 				EEF6AC382A11271B00DA9E86 /* ProgressView.swift */,
+				EE07447D2A153A5100232A7D /* WorkoutViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -167,7 +172,7 @@
 				EEF6AC212A11236C00DA9E86 /* LoginViewController.swift */,
 				EEF6AC232A11237800DA9E86 /* RegisterViewController.swift */,
 				EEF6AC252A11239300DA9E86 /* DetailsViewController.swift */,
-				EEF6AC272A1123A200DA9E86 /* UserDetailsViewController.swift */,
+				EEF6AC272A1123A200DA9E86 /* WorkoutDetailsViewController.swift */,
 				EEF6AC292A1123B500DA9E86 /* CustomScheduleViewController.swift */,
 				EEF6AC2B2A1123C600DA9E86 /* ProfileViewController.swift */,
 				EEF6AC2E2A11243500DA9E86 /* TabBarViewController.swift */,
@@ -260,6 +265,7 @@
 				EEB46DF02A0FF4B200165FB9 /* FirebaseDatabase */,
 				EEB46DF22A0FF4B200165FB9 /* FirebaseFirestore */,
 				EEB46DF42A0FF4B200165FB9 /* FirebaseStorage */,
+				EEA81DCF2A154D9F007C6F5B /* Kingfisher */,
 			);
 			productName = fitplan;
 			productReference = EEFB613E2A0FDC9A00C42223 /* fitplan.app */;
@@ -335,6 +341,7 @@
 			mainGroup = EEFB61352A0FDC9A00C42223;
 			packageReferences = (
 				EEB46DEB2A0FF4B200165FB9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				EEA81DCE2A154D9F007C6F5B /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = EEFB613F2A0FDC9A00C42223 /* Products */;
 			projectDirPath = "";
@@ -381,10 +388,10 @@
 			files = (
 				EE862CC12A117FD600BC43C3 /* ProgressModel.swift in Sources */,
 				EEF6AC1E2A1122C700DA9E86 /* CustomSchedules.swift in Sources */,
-				EEF6AC1C2A11228D00DA9E86 /* UserDetailsView.swift in Sources */,
+				EEF6AC1C2A11228D00DA9E86 /* WorkoutDetailsView.swift in Sources */,
 				EEF6AC202A1122E700DA9E86 /* ProfileView.swift in Sources */,
 				EEF6AC242A11237800DA9E86 /* RegisterViewController.swift in Sources */,
-				EEF6AC282A1123A200DA9E86 /* UserDetailsViewController.swift in Sources */,
+				EEF6AC282A1123A200DA9E86 /* WorkoutDetailsViewController.swift in Sources */,
 				EEF6AC342A11250700DA9E86 /* AuthHandler.swift in Sources */,
 				EEFB61462A0FDC9A00C42223 /* HomeViewController.swift in Sources */,
 				EEF6AC2C2A1123C600DA9E86 /* ProfileViewController.swift in Sources */,
@@ -398,6 +405,7 @@
 				EEF6AC162A11224300DA9E86 /* RegisterView.swift in Sources */,
 				EEFB61422A0FDC9A00C42223 /* AppDelegate.swift in Sources */,
 				EE862CBF2A117B0100BC43C3 /* ScheduleModel.swift in Sources */,
+				EE07447E2A153A5100232A7D /* WorkoutViewCell.swift in Sources */,
 				EEF6AC182A11226500DA9E86 /* HomeView.swift in Sources */,
 				EE862CBD2A1177C300BC43C3 /* WorkoutDetailModel.swift in Sources */,
 				EEF6AC142A11223300DA9E86 /* LoginView.swift in Sources */,
@@ -744,6 +752,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		EEA81DCE2A154D9F007C6F5B /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		EEB46DEB2A0FF4B200165FB9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -755,6 +771,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		EEA81DCF2A154D9F007C6F5B /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EEA81DCE2A154D9F007C6F5B /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		EEB46DEC2A0FF4B200165FB9 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EEB46DEB2A0FF4B200165FB9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
