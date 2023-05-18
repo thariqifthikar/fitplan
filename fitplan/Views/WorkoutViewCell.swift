@@ -79,7 +79,7 @@ class WorkoutViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with workout: WorkoutModel) {
+    func configure(with workout: WorkoutDetailModel) {
         thumbnail.kf.setImage(with: workout.thumbURL)
         title.text = workout.title
         descript.text = workout.description

@@ -6,25 +6,42 @@
 //
 
 import UIKit
+import YouTubeiOSPlayerHelper
 
-class WorkoutDetailsViewController: UIViewController {
+class WorkoutDetailsViewController: UIViewController, YTPlayerViewDelegate {
     
     private let workoutView = WorkoutDetailsView();
     var workouttitle: String?
-    var workoutDetails: [WorkoutDetailModel] = [
-        WorkoutDetailModel(id: "1", title: "Barbell Bench Press (Incline or Decline)",
-                           videoURL: URL(string: "https://www.youtube.com/watch?v=LfyQBUKR8SE"), thumbURL: URL(string: "https://qph.cf2.quoracdn.net/main-qimg-d80b078f955fa2e107023ad547b57e7e-lq"), description: "Lie on an incline or decline bench with a barbell held at shoulder level. Lower the barbell to your chest, then press it back up to the starting position.", setCount: 15, repCount: 20, time: 3, bodyPart: "Torso", bodyPartURL: URL(string: "https://fitnessvolt.com/wp-content/uploads/2020/01/decline-barbell-bench-pres.jpg"), weights: true)
-    ]
+    
+    var workoutDetails: WorkoutDetailModel
+    
+    
+    init(item: WorkoutDetailModel) {
+        self.workoutDetails = item
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = workouttitle
+        title = "\(workoutDetails.goal) \u{2022} \(workoutDetails.level)"
         
         view.backgroundColor = .systemBackground
         view.addSubview(workoutView)
         
-        workoutView.title.text = workouttitle
+        workoutView.title.text = workoutDetails.title
+        workoutView.subtitle.text = workoutDetails.description
+        workoutView.video.delegate = self
+        workoutView.video.load(withVideoId: workoutDetails.videoURL)
+        workoutView.reps.text = String(workoutDetails.repCount)
+        workoutView.sets.text = String(workoutDetails.setCount)
+        workoutView.bodypart.text = workoutDetails.bodyPart
+        workoutView.bodypartimg.kf.setImage(with: workoutDetails.bodyPartURL)
+        
         
     }
     
