@@ -12,9 +12,8 @@ class WorkoutDetailsView: UIView {
     
     public let title: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
         label.numberOfLines = 0
         return label
     }()
@@ -228,8 +227,8 @@ class WorkoutDetailsView: UIView {
         
         cardMain.layoutIfNeeded()
         var dataheight = cardMain.arrangedSubviews.reduce(0) { $0 + $1.frame.height }
-        print(dataheight)
         scroll.contentSize = CGSize(width: scroll.bounds.width, height: dataheight*0.7)
+        
         
     }
     

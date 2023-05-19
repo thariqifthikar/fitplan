@@ -22,21 +22,18 @@ class TabBarViewController: UITabBarController {
         schedules.title = "Schedules"
         schedules.navigationItem.largeTitleDisplayMode = .always
         let navSchedules = UINavigationController(rootViewController: schedules)
-        navSchedules.navigationBar.prefersLargeTitles = true
         navSchedules.tabBarItem = UITabBarItem(title: "Schedules", image: UIImage(systemName: "calendar"), tag: 2)
         
         let profile = ProfileViewController()
         profile.title = "Profile"
         profile.navigationItem.largeTitleDisplayMode = .always
         let navProfile = UINavigationController(rootViewController: profile)
-        navProfile.navigationBar.prefersLargeTitles = true
         navProfile.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 3)
         
         let progress = ProgressViewController()
         progress.title = "Progress"
         progress.navigationItem.largeTitleDisplayMode = .always
         let navProgress = UINavigationController(rootViewController: progress)
-        navProgress.navigationBar.prefersLargeTitles = true
         navProgress.tabBarItem = UITabBarItem(title: "Progress", image: UIImage(systemName: "chart.bar"), tag: 4)
                 
         setViewControllers([navHome, navProgress, navSchedules, navProfile], animated: true)

@@ -13,8 +13,8 @@ struct WorkoutDetailModel {
     let videoURL: String
     let thumbURL: URL?
     let description: String
-    let setCount: Int
-    let repCount: Int
+    let setCount: Double
+    let repCount: Double
     let bodyPart: String
     let bodyPartURL: URL?
     let weights: Bool

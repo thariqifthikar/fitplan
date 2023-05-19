@@ -53,10 +53,64 @@ final class FirebaseDBHandler{
     
     //workouts management
     public func getWorkouts(
-        completion: @escaping ([WorkoutModel])->Void
+        level: String,
+        equipment: Bool,
+        goal: String,
+        completion: @escaping ([WorkoutDetailModel])->Void
     ){
-        //get all workouts code
-        //TODO: adjust code to get only suitable workouts
+        let collection = db.collection("Workouts")
+        
+        collection.whereField("level", isEqualTo: level)
+            .whereField("equipment", isEqualTo: equipment)
+            .whereField("goal", isEqualTo: goal)
+            .getDocuments { (snapshot, error) in
+                
+                guard let snapshot = snapshot, error == nil else{
+                    print(error?.localizedDescription ?? "")
+                    completion([])
+                    return
+                }
+                
+                var workouts: [WorkoutDetailModel] = []
+                for doc in snapshot.documents {
+                    let data = doc.data()
+                    let id = doc.documentID
+                    
+                    guard let title = data["title"] as? String,
+                          let videoURL = data["videoURL"] as? String,
+                          let thumbURLString = data["thumbURL"] as? String,
+                          let thumbURL = URL(string: thumbURLString),
+                          let description = data["description"] as? String,
+                          let setCount = data["sets"] as? Double,
+                          let repCount = data["reps"] as? Double,
+                          let bodyPart = data["bodyPart"] as? String,
+                          let bodyPartURLString = data["bodyPartURL"] as? String,
+                          let bodyPartURL = URL(string: bodyPartURLString),
+                          let weights = data["equipment"] as? Bool,
+                          let level = data["level"] as? String,
+                          let goal = data["goal"] as? String else {
+                        print("Failed to parse workout data for document with ID: \(doc.documentID)")
+                        continue
+                    }
+                    
+                    workouts.append(WorkoutDetailModel(
+                        id: id,
+                        title: title,
+                        videoURL: videoURL,
+                        thumbURL: thumbURL,
+                        description: description,
+                        setCount: setCount,
+                        repCount: repCount,
+                        bodyPart: bodyPart,
+                        bodyPartURL: bodyPartURL,
+                        weights: weights,
+                        level: level,
+                        goal: goal))
+                }
+                
+                completion(workouts)
+                
+            }
     }
     
     public func getWorkoutDetails(
@@ -120,11 +174,52 @@ final class FirebaseDBHandler{
         //insert code to add progress
     }
     
-    public func getUserProgress(
-        userId:String,
+    public func getProgresses(
+        userid: String,
         completion: @escaping ([ProgressModel])->Void
     ){
-        //insert code to get all progress for user
+        let collection = db.collection("Progress")
+        
+        collection.whereField("userid", isEqualTo: userid)
+            .getDocuments { (snapshot, error) in
+                
+                guard let snapshot = snapshot, error == nil else{
+                    print(error?.localizedDescription ?? "")
+                    completion([])
+                    return
+                }
+                
+                var progressArray: [ProgressModel] = []
+                for doc in snapshot.documents {
+                    let data = doc.data()
+                    let id = doc.documentID
+                    
+                    guard let workoutTitle = data["workoutTitle"] as? String,
+                          let workoutThumbURLString = data["workoutThumbURL"] as? String,
+                          let workoutThumbURL = URL(string: workoutThumbURLString),
+                          let workoutId = data["workoutId"] as? String,
+                          let userid = data["userid"] as? String,
+                          let sets = data["sets"] as? Int,
+                          let reps = data["reps"] as? Int,
+                          let timestamp = data["timestamp"] as? TimeInterval else {
+                        print("Failed to parse workout data for document with ID: \(doc.documentID)")
+                        continue
+                    }
+                    
+                    progressArray.append(ProgressModel(
+                        id: id,
+                        workoutId: workoutId,
+                        workoutTitle: workoutTitle,
+                        workoutThumbURL: workoutThumbURL,
+                        userId: userid,
+                        sets: sets,
+                        reps: reps,
+                        timestamp: timestamp))
+                }
+                
+                completion(progressArray)
+                
+            }
     }
     
     public func getWorkoutProgress(

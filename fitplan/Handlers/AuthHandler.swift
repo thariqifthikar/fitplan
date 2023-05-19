@@ -11,11 +11,11 @@ import FirebaseAuth
 final class AuthHandler{
     
     static let shared = AuthHandler()
-    private let auth = Auth.auth()
+    public let auth = Auth.auth()
     
     init(){}
     
-    public var signedIn: Bool {
+    private var signedIn: Bool {
         return auth.currentUser != nil
     }
     

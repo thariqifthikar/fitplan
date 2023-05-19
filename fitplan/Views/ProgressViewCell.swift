@@ -1,16 +1,16 @@
 //
-//  WorkoutViewCell.swift
+//  ProgressViewCell.swift
 //  fitplan
 //
-//  Created by user230748 on 5/18/23.
+//  Created by user230748 on 5/20/23.
 //
 
 import UIKit
 import Kingfisher
 
-class WorkoutViewCell: UICollectionViewCell {
+class ProgressViewCell: UICollectionViewCell {
     
-    static let reuseIdentifier = "WorkoutCell"
+    static let reuseIdentifier = "ProgressCell"
     
     private let thumbnail: UIImageView = {
         let image = UIImageView()
@@ -38,15 +38,6 @@ class WorkoutViewCell: UICollectionViewCell {
         return label
     }()
     
-    private let descript: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
-        label.numberOfLines = 2
-        return label
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -55,9 +46,8 @@ class WorkoutViewCell: UICollectionViewCell {
         
         addSubview(thumbnail)
         addSubview(title)
-        addSubview(descript)
         
-        thumbnail.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        thumbnail.heightAnchor.constraint(equalToConstant: 50).isActive = true
         thumbnail.widthAnchor.constraint(equalTo: widthAnchor, constant: -30).isActive = true
         thumbnail.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
         
@@ -65,13 +55,10 @@ class WorkoutViewCell: UICollectionViewCell {
         rect.widthAnchor.constraint(equalTo: widthAnchor, constant: -30).isActive = true
         rect.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
         
-        descript.widthAnchor.constraint(equalTo: thumbnail.widthAnchor, constant: -20).isActive = true
-        descript.leadingAnchor.constraint(equalTo: thumbnail.leadingAnchor, constant: 10).isActive = true
-        descript.bottomAnchor.constraint(equalTo: thumbnail.bottomAnchor, constant: -10).isActive = true
-        
         title.widthAnchor.constraint(equalTo: thumbnail.widthAnchor, constant: -20).isActive = true
         title.leadingAnchor.constraint(equalTo: thumbnail.leadingAnchor, constant: 10).isActive = true
-        title.bottomAnchor.constraint(equalTo: descript.topAnchor, constant: -10).isActive = true
+        title.topAnchor.constraint(equalTo: thumbnail.topAnchor, constant: -10).isActive = true
+        title.heightAnchor.constraint(equalTo: thumbnail.heightAnchor).isActive = true
         
     }
     
@@ -79,9 +66,9 @@ class WorkoutViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with workout: WorkoutDetailModel) {
-        thumbnail.kf.setImage(with: workout.thumbURL)
-        title.text = workout.title
-        descript.text = workout.description
+    func configure(with progress: ProgressModel) {
+        progress.kf.setImage(with: progress.workoutThumbURL)
+        title.text = progress.workoutTitle
     }
 }
+

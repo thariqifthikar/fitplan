@@ -8,10 +8,12 @@
 import Foundation
 
 struct ProgressModel {
+    let id: String
     let workoutId: String
+    let workoutTitle: String
+    let workoutThumbURL: URL?
     let userId: String
     let sets: Int
     let reps: Int
-    let weights: Float
     let timestamp: TimeInterval
 }
