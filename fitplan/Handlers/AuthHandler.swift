@@ -15,7 +15,7 @@ final class AuthHandler{
     
     init(){}
     
-    private var signedIn: Bool {
+    public var signedIn: Bool {
         return auth.currentUser != nil
     }
     
@@ -46,27 +46,47 @@ final class AuthHandler{
         }
     }
     
-    public func registerFunc(email:String, password:String, confPassword:String, completion: @escaping (Bool)->Void){
-        if(
-            email.isEmpty ||
-            password.isEmpty ||
-            password.count < 8 ||
-            password != confPassword)
-        {
-            completion(false)
-            return
-        }
+    public func registerFunc(
+        email: String,
+        password: String,
+        firstname: String,
+        lastname: String,
+        dob: TimeInterval,
+        gender: String,
+        completion: @escaping (Bool) -> Void
+    ) {
         
-        auth.createUser(withEmail: email, password: password){result, error in
-            if(result == nil || error != nil){
+        auth.createUser(withEmail: email, password: password) { authResult, error in
+            guard authResult != nil, error == nil else {
                 completion(false)
                 return
             }
             
-            completion(true)
+            guard let userid = authResult?.user.uid else {
+                completion(false)
+                print("No userid")
+                return
+            }
+            
+            let userData: [String:Any] = [
+                "userid": userid,
+                "firstname": firstname,
+                "lastname": lastname,
+                "dob": dob,
+                "gender": gender
+            ]
+            
+            FirebaseDBHandler.shared.addUser(user: userData, userid: userid) { success in
+                
+                guard success else {
+                    completion(false)
+                    return
+                }
+                
+                completion(true)
+            }
+            
         }
-        
-        
     }
 }
 

@@ -226,7 +226,7 @@ class WorkoutDetailsView: UIView {
         bodypartimg.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         cardMain.layoutIfNeeded()
-        var dataheight = cardMain.arrangedSubviews.reduce(0) { $0 + $1.frame.height }
+        let dataheight = cardMain.arrangedSubviews.reduce(0) { $0 + $1.frame.height }
         scroll.contentSize = CGSize(width: scroll.bounds.width, height: dataheight*0.7)
         
         

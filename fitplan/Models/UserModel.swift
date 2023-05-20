@@ -8,9 +8,14 @@
 import Foundation
 
 struct UserModel {
+    let id: String
     let firstName: String
     let lastName: String
     let dob: TimeInterval
     let gender: String
-    let details: [String: Any]
+    let height: Float
+    let weight: Float
+    let equipment: Bool
+    let goal: String
+    let level: String
 }

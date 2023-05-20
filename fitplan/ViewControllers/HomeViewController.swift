@@ -38,7 +38,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         homeView.collection.delegate = self
         
         FirebaseDBHandler.shared.getWorkouts(level: "Beginner", equipment: false, goal: "Weight Loss") { [weak self] workouts in
-            print("workouts: /(workouts.count)")
+            print("workouts: \(workouts.count)")
             self?.workouts = workouts
             DispatchQueue.main.async {
                 self?.homeView.collection.reloadData()

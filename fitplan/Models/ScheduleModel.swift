@@ -8,8 +8,11 @@
 import Foundation
 
 struct ScheduleModel {
+    let id: String
     let selectedDays: [String]
     let selectedTime: TimeInterval
     let workoutId: String
-    let time: TimeInterval
+    let workoutTitle: String
+    let workoutThumbURL: URL?
+    let userid: String
 }

@@ -17,36 +17,90 @@ final class FirebaseDBHandler{
     
     //user management
     public func addUser(
-        user:UserModel,
-        completion: @escaping (Bool)->Void
-    ){
-        //insert code to add user
+        user: [String:Any],
+        userid:String,
+        completion: @escaping (Bool) -> Void
+    ) {
+        
+        db.collection("Users").document(userid).setData(user) { error in
+            
+            guard error == nil else {
+                print(error?.localizedDescription ?? "")
+                completion(false)
+                return
+            }
+            
+            completion(true)
+        }
     }
     
     public func addUserdetails(
-        user:UserModel,
-        completion: @escaping (Bool)->Void
-    ){
-        //code to update user (with details map filled)
+        user: [String:Any],
+        userid: String,
+        completion: @escaping (Bool) -> Void
+    ) {
+        
+        db.collection("Users").document(userid).updateData(user) { error in
+            
+            guard error == nil else {
+                print(error?.localizedDescription ?? "")
+                completion(false)
+                return
+            }
+            
+            completion(true)
+        }
     }
     
     public func updateUserDetails(
-        firstName: String,
-        lastName: String,
+        user: [String:Any],
+        userid: String,
         completion: @escaping (Bool)->Void
     ){
-        if(firstName.isEmpty || lastName.isEmpty){
-            completion(false)
-            return
+        db.collection("Users").document(userid).updateData(user) { error in
+            
+            guard error == nil else {
+                print(error?.localizedDescription ?? "")
+                completion(false)
+                return
+            }
+            
+            completion(true)
         }
-        
-        //insert code to update user
     }
     
-    func userHasDetails() -> Bool {
-        let result = true
+    public func userHasDetails(
+        userid: String,
+        completion: @escaping (Bool) -> Void
+    ) {
+        let collection = db.collection("Users")
         
-        return result
+        collection.whereField("userid", isEqualTo: userid)
+            .getDocuments { (snapshot, error) in
+                
+                guard let snapshot = snapshot, error == nil else{
+                    print(error?.localizedDescription ?? "")
+                    completion(false)
+                    return
+                }
+                
+                let data = snapshot.documents[0].data()
+                
+                guard let _ = data["height"] as? Float,
+                      let _ = data["weight"] as? Float,
+                      let _ = data["equipment"] as? Bool,
+                      let _ = data["goal"] as? String,
+                      let _ = data["level"] as? String else {
+                    print("No needed data for document with ID: \(snapshot.documents[0].documentID)")
+                    completion(false)
+                    return
+                }
+                
+                completion(true)
+                
+            }
+        
+        
     }
     
     
@@ -113,55 +167,112 @@ final class FirebaseDBHandler{
             }
     }
     
-    public func getWorkoutDetails(
-        workoutId: String,
-        completion: @escaping (WorkoutDetailModel)->Void
-    ){
-        //insert code to get workout details
-    }
-    
     
     
     //custom schedules management
     public func getUserSchedules(
-        userId: String,
+        userid: String,
         completion: @escaping ([ScheduleModel])->Void
     ){
-        //insert code to get all schedules for specific user
-    }
-    
-    public func getWorkoutSchedule(
-        userId: String,
-        workoutId: String,
-        completion: @escaping (ScheduleModel)->Void
-    ){
-        //insert code to get schedule for workout
+        let collection = db.collection("Schedules")
+        
+        collection.whereField("userid", isEqualTo: userid)
+            .getDocuments { (snapshot, error) in
+                
+                guard let snapshot = snapshot, error == nil else{
+                    print(error?.localizedDescription ?? "")
+                    completion([])
+                    return
+                }
+                
+                var schedules: [ScheduleModel] = []
+                for doc in snapshot.documents {
+                    let data = doc.data()
+                    let id = doc.documentID
+                    
+                    guard let workoutTitle = data["workoutTitle"] as? String,
+                          let workoutId = data["workoutId"] as? String,
+                          let workoutThumbURLString = data["workoutThumbURL"] as? String,
+                          let workoutThumbURL = URL(string: workoutThumbURLString),
+                          let userid = data["userid"] as? String,
+                          let time = data["time"] as? TimeInterval,
+                          let days = data["days"] as? [String] else {
+                        print("no schedule data for document with ID: \(doc.documentID)")
+                        continue
+                    }
+                    
+                    schedules.append(ScheduleModel(
+                        id: id,
+                        selectedDays: days,
+                        selectedTime: time,
+                        workoutId: workoutId,
+                        workoutTitle: workoutTitle,
+                        workoutThumbURL: workoutThumbURL,
+                        userid: userid)
+                    )
+                }
+                
+                completion(schedules)
+                
+            }
     }
     
     public func addSchedule(
         schedule: ScheduleModel,
-        completion: @escaping (Bool)->Void
-    ){
-        if(schedule.workoutId.isEmpty || schedule.selectedDays.isEmpty || schedule.selectedTime.isZero){
-            completion(false)
-            return
-        }
+        completion: @escaping (Bool) -> Void
+    ) {
         
-        //insert data to add schedule
+        let data: [String:Any] = [
+            "days": schedule.selectedDays,
+            "time": schedule.selectedTime,
+            "userid": schedule.id,
+            "workoutId": schedule.workoutId,
+            "workoutThumbURL": schedule.workoutThumbURL?.absoluteString ?? "",
+            "workoutTitle": schedule.workoutTitle
+        ]
+        
+        db.collection("Schedules").addDocument(data: data) { error in
+            
+            guard error == nil else {
+                print(error?.localizedDescription ?? "")
+                completion(false)
+                return
+            }
+            
+            completion(true)
+        }
     }
     
     public func removeSchedule(
-        schedule: ScheduleModel,
+        scheduleId: String,
         completion: @escaping (Bool)->Void
     ){
-        //insert code to remove schedules
+        db.collection("Schedule").document(scheduleId).delete { error in
+            guard error == nil else {
+                print("couldnt delete: \(error?.localizedDescription ?? "")")
+                completion(false)
+                return
+            }
+            
+            completion(true)
+        }
     }
     
     public func updateSchedule(
-        schedule: ScheduleModel,
+        schedule: [String:Any],
+        scheduleId: String,
         completion: @escaping (Bool)->Void
     ){
-        //insert data to update schedule
+        db.collection("Schedule").document(scheduleId).updateData(schedule) { error in
+            
+            guard error == nil else {
+                print(error?.localizedDescription ?? "")
+                completion(false)
+                return
+            }
+            
+            completion(true)
+        }
     }
     
     
@@ -169,18 +280,40 @@ final class FirebaseDBHandler{
     //progress management
     public func addProgress(
         progress: ProgressModel,
-        completion: @escaping (Bool)->Void
-    ){
-        //insert code to add progress
+        completion: @escaping (Bool) -> Void
+    ) {
+        
+        let data: [String:Any] = [
+            "reps": progress.reps,
+            "sets": progress.sets,
+            "timestamp": progress.timestamp,
+            "workoutId": progress.workoutId,
+            "workoutThumbURL": progress.workoutThumbURL?.absoluteString ?? "",
+            "workoutTitle": progress.workoutTitle,
+            "userid": progress.id
+        ]
+        
+        db.collection("Progress").addDocument(data: data) { error in
+            
+            guard error == nil else {
+                print(error?.localizedDescription ?? "")
+                completion(false)
+                return
+            }
+            
+            completion(true)
+        }
     }
     
     public func getProgresses(
         userid: String,
+        workoutId: String,
         completion: @escaping ([ProgressModel])->Void
     ){
         let collection = db.collection("Progress")
         
         collection.whereField("userid", isEqualTo: userid)
+            .whereField("workoutId", isEqualTo: workoutId)
             .getDocuments { (snapshot, error) in
                 
                 guard let snapshot = snapshot, error == nil else{
@@ -222,25 +355,18 @@ final class FirebaseDBHandler{
             }
     }
     
-    public func getWorkoutProgress(
-        userId: String,
-        workoutId: String,
-        completion: @escaping ([ProgressModel])->Void
-    ){
-        //insert code to get progress by user and workout
-    }
-    
     public func removeProgress (
-        progress: ProgressModel,
+        progressId: String,
         completion: @escaping (Bool)->Void
     ){
-        //remove progress
-    }
-    
-    public func updateProgress(
-        progress:ProgressModel,
-        completion: @escaping (Bool)->Void
-    ){
-        //update progress
+        db.collection("Progress").document(progressId).delete { error in
+            guard error == nil else {
+                print("couldnt delete: \(error?.localizedDescription ?? "")")
+                completion(false)
+                return
+            }
+            
+            completion(true)
+        }
     }
 }
