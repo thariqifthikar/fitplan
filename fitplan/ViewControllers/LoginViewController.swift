@@ -38,6 +38,12 @@ class LoginViewController: UIViewController{
             return
         }
         
+        func displayAlert(message: String) {
+            let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alertController, animated: true, completion: nil)
+        }
+        
         AuthHandler.shared.loginFunc(email: email, password: password){ [weak self] success in
             guard success else {
                 print("login error")
@@ -47,19 +53,29 @@ class LoginViewController: UIViewController{
             DispatchQueue.main.async {
                 let userid = UserDefaults.standard.value(forKey: "userid") as! String
                 
-                FirebaseDBHandler.shared.userHasDetails(userid: userid){ hasDetails in
-                    let vc: UIViewController
-                    if hasDetails {
-                        
-                        vc = TabBarViewController()
-                        vc.modalPresentationStyle = .fullScreen
-                        self?.present(vc, animated: true)
-                        
-                    } else {
-                        vc = DetailsViewController()
-                        vc.modalPresentationStyle = .fullScreen
-                        self?.present(vc, animated: true)
+                FirebaseDBHandler.shared.getUserDetails(userid: userid){ success, goal, level, equipment in
+                    guard success, !goal.isEmpty, !level.isEmpty else {
+                        print("failed to fetch user data")
+                        displayAlert(message: "An error occurred")
+                        AuthHandler.shared.logoutFunc(){ success in
+                            guard success else {
+                                print("error logging out")
+                                return
+                            }
+                            
+                            print("user logged out")
+                        }
+                        return
                     }
+                    
+                    UserDefaults.standard.set(goal, forKey: "goal")
+                    UserDefaults.standard.set(level, forKey: "level")
+                    UserDefaults.standard.set(equipment, forKey: "equipment")
+                    
+                    let vc: UIViewController
+                    vc = TabBarViewController()
+                    vc.modalPresentationStyle = .fullScreen
+                    self?.present(vc, animated: true)
                 }
                 
             }

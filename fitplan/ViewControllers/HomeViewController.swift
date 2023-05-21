@@ -22,13 +22,25 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         homeView.collection.dataSource = self
         homeView.collection.delegate = self
         
-        FirebaseDBHandler.shared.getWorkouts(level: "Beginner", equipment: false, goal: "Weight Loss") { [weak self] workouts in
+        let equipment = UserDefaults.standard.bool(forKey: "equipment")
+        
+        guard let goal = UserDefaults.standard.string(forKey: "goal") else {
+            print("failed to get goal")
+            return
+        }
+        guard let level = UserDefaults.standard.string(forKey: "level") else {
+            print("failed to get level")
+            return
+        }
+        
+                
+        FirebaseDBHandler.shared.getWorkouts(level: level, equipment: equipment, goal: goal) { [weak self] workouts in
             print("workouts: \(workouts.count)")
             self?.workouts = workouts
             DispatchQueue.main.async {
                 self?.homeView.collection.reloadData()
             }
-
+            
         }
         
         print(homeView.collection.contentSize)

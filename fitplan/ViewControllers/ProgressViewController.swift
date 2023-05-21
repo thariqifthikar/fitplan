@@ -170,7 +170,15 @@ class ProgressViewController: UIViewController, UICollectionViewDataSource, UICo
     
     func setupData(){
         workouts.removeAll()
-        FirebaseDBHandler.shared.getWorkoutProgresses(level: "Beginner", equipment: false, goal: "Weight Loss") { [weak self] workouts in
+       
+        let equipment = UserDefaults.standard.bool(forKey: "equipment")
+        
+        guard let goal = UserDefaults.standard.string(forKey: "goal"),
+              let level = UserDefaults.standard.string(forKey: "level") else {
+            print("failed to get user defaults")
+            return
+        }
+        FirebaseDBHandler.shared.getWorkoutProgresses(level: level, equipment: equipment, goal: goal) { [weak self] workouts in
             print("workoutprogresses: \(workouts)")
             self?.workouts = workouts
             DispatchQueue.main.async {

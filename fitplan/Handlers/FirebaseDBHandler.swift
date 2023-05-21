@@ -108,38 +108,37 @@ final class FirebaseDBHandler{
         
     }
     
-    public func setUserDetails(
+    public func getUserDetails(
         userid: String,
-        completion: @escaping (Bool) -> Void
+        completion: @escaping (Bool, String, String, Bool) -> Void
     ) {
         let collection = db.collection("Users")
         
-        collection.whereField("userid", isEqualTo: userid)
-            .getDocuments { (snapshot, error) in
-                
-                guard let snapshot = snapshot, error == nil else{
-                    print(error?.localizedDescription ?? "")
-                    completion(false)
-                    return
-                }
-                
-                let data = snapshot.documents[0].data()
-                
-                guard let goal = data["goal"] as? Float,
-                      let level = data["level"] as? Float,
-                      let equipment = data["equipment"] as? Bool else {
-                    print("No needed data for document with ID: \(snapshot.documents[0].documentID)")
-                    completion(false)
-                    return
-                }
-                
-                UserDefaults.standard.set(goal, forKey: "goal")
-                UserDefaults.standard.set(level, forKey: "level")
-                UserDefaults.standard.set(equipment, forKey: "equipment")
-                
-                completion(true)
-                
+        collection.document(userid).getDocument(){ (snapshot, error) in
+            
+            guard let snapshot = snapshot, error == nil else{
+                print(error?.localizedDescription ?? "")
+                completion(false, "","",false)
+                return
             }
+            
+            let data = snapshot.data()
+            
+            guard let goal = data?["goal"] as? String,
+                  let level = data?["level"] as? String,
+                  let equipment = data?["equipment"] as? Bool else {
+                print("No needed data for document with ID: \(snapshot.documentID)")
+                completion(false, "", "", false)
+                return
+            }
+            
+            UserDefaults.standard.set(goal, forKey: "goal")
+            UserDefaults.standard.set(level, forKey: "level")
+            UserDefaults.standard.set(equipment, forKey: "equipment")
+            
+            completion(true, goal, level, equipment)
+            
+        }
         
         
     }

@@ -39,6 +39,9 @@ final class AuthHandler{
     public func logoutFunc(completion: (Bool)->Void){
         do{
             try auth.signOut()
+            UserDefaults.standard.removeObject(forKey: "level")
+            UserDefaults.standard.removeObject(forKey: "goal")
+            UserDefaults.standard.removeObject(forKey: "equipment")
             completion(true)
         }
         catch{
@@ -50,10 +53,7 @@ final class AuthHandler{
     public func registerFunc(
         email: String,
         password: String,
-        firstname: String,
-        lastname: String,
-        dob: TimeInterval,
-        gender: String,
+        user: UserModel,
         completion: @escaping (Bool) -> Void
     ) {
         
@@ -70,11 +70,16 @@ final class AuthHandler{
             }
             
             let userData: [String:Any] = [
-                "userid": userid,
-                "firstname": firstname,
-                "lastname": lastname,
-                "dob": dob,
-                "gender": gender
+                "dob": Date(timeIntervalSince1970: user.dob),
+                "equipment": user.equipment,
+                "firstname": user.firstName,
+                "lastname": user.lastName,
+                "gender": user.gender,
+                "goal": user.goal,
+                "height": user.height,
+                "weight": user.weight,
+                "level": user.level,
+                "userid": userid
             ]
             
             FirebaseDBHandler.shared.addUser(user: userData, userid: userid) { success in
