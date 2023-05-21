@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    var viewcontroller: UIViewController
+    var viewcontroller: UIViewController?
     
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -23,26 +23,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                
                 
         if(AuthHandler.shared.signedIn){
+            print("signed in")
             guard let userid: String = AuthHandler.shared.auth.currentUser?.uid else {
                 print("no user id")
                 return
             }
             
-            FirebaseDBHandler.shared.userHasDetails(userid: userid) { hasData in
-                DispatchQueue.main.async {
-                    
+            let hasData = true
+            
+//            print("userid \(userid)")
+//            FirebaseDBHandler.shared.userHasDetails(userid: userid) { [weak self] hasData in
+//                DispatchQueue.main.async {
                     if hasData {
-                        self.viewcontroller = TabBarViewController()
+                        print(hasData)
+                        viewcontroller = TabBarViewController()
                     } else {
-                        self.viewcontroller = DetailsViewController()
+                        print(hasData)
+                        viewcontroller = DetailsViewController()
                     }
                     
-                    self.window?.makeKeyAndVisible()
-                }
-            }
+                    window.makeKeyAndVisible()
+                    window.rootViewController = viewcontroller
+                    
+                    self.window = window
+
+//                }
+//            }
             
         }
         else{
+            print("not signed in")
             let loginViewController = LoginViewController()
             loginViewController.navigationItem.largeTitleDisplayMode = .never
             
@@ -50,11 +60,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             navigationViewController.navigationBar.prefersLargeTitles = false
             
             viewcontroller = navigationViewController
+            window.rootViewController = viewcontroller
+            window.makeKeyAndVisible()
+            self.window = window
         }
-        
-        window.rootViewController = viewcontroller
-        window.makeKeyAndVisible()
-        self.window = window
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

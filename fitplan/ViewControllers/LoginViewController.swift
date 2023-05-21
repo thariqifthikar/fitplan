@@ -40,20 +40,33 @@ class LoginViewController: UIViewController{
         
         AuthHandler.shared.loginFunc(email: email, password: password){ [weak self] success in
             guard success else {
+                print("login error")
                 return
             }
             
             DispatchQueue.main.async {
-                UserDefaults.standard.set(email, forKey: "email")
-                let vc: UIViewController
-                if FirebaseDBHandler.shared.userHasDetails() {
-                    vc = TabBarViewController()
-                    vc.modalPresentationStyle = .fullScreen
-                    self?.present(vc, animated: true)
-                } else {
-                    vc = DetailsViewController()
-                    vc.modalPresentationStyle = .fullScreen
-                    self?.present(vc, animated: true)
+                let userid = UserDefaults.standard.value(forKey: "userid") as! String
+                
+                FirebaseDBHandler.shared.userHasDetails(userid: userid){ hasDetails in
+                    let vc: UIViewController
+                    if hasDetails {
+                        
+                        FirebaseDBHandler.shared.setUserDetails(userid: userid){ success in
+                            let vc: UIViewController
+                            guard success else {
+                                print("error setting defaults")
+                                return
+                            }
+                            
+                            vc = TabBarViewController()
+                            vc.modalPresentationStyle = .fullScreen
+                            self?.present(vc, animated: true)
+                        }
+                    } else {
+                        vc = DetailsViewController()
+                        vc.modalPresentationStyle = .fullScreen
+                        self?.present(vc, animated: true)
+                    }
                 }
                 
             }

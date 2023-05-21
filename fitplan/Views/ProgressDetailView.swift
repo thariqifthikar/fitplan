@@ -17,120 +17,72 @@ class ProgressDetailsView: UIView {
         return label
     }()
     
-    public let subtitle: UILabel = {
+    private let targetRepsLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
-//        label.textAlignment = .center
         label.numberOfLines = 0
+        label.text = "Reps x Sets for 30 Days"
         return label
     }()
     
-    private let repslabel: UILabel = {
+    public let targetReps: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.textColor = .systemOrange
-        label.text = "Reps"
         return label
     }()
     
-    private let setslabel: UILabel = {
+    private let currentRepsLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.text = "Current Reps x Sets"
+        return label
+    }()
+    
+    public let currentReps: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.textColor = .systemOrange
-        label.text = "Sets"
         return label
     }()
     
-    public let reps: UILabel = {
+    private let progressLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
+        label.textColor = .white
+        label.numberOfLines = 1
+        label.text = "Reps Progress"
         return label
     }()
     
-    public let sets: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        return label
+    public let progressView: UIProgressView = {
+        let progress = UIProgressView()
+        progress.progressTintColor = .green
+        progress.trackTintColor = .lightGray
+        progress.progress = 0
+        progress.layer.cornerRadius = 10
+        return progress
     }()
     
-    private let bodypartlabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .systemOrange
-        label.text = "Effective Body Parts"
-        label.numberOfLines = 0
-        return label
+    public let collection: UICollectionView
+    
+    private let layout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 15
+        layout.minimumInteritemSpacing = 15
+        return layout
     }()
     
-    public let bodypart: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        return label
-    }()
-    
-    public let bodypartimg: UIImageView = {
-        let image = UIImageView()
-        image.contentMode = .scaleAspectFill
-        image.clipsToBounds = true
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.layer.cornerRadius = 10
-        return image
-    }()
-    
-    private let scroll: UIScrollView = {
-        let scroll = UIScrollView()
-        scroll.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        scroll.translatesAutoresizingMaskIntoConstraints = false
-        scroll.alwaysBounceVertical = true // Enable vertical scrolling
-        scroll.isScrollEnabled = true
-        scroll.contentSize = CGSize(width: scroll.frame.width, height: 1000)
-        scroll.showsVerticalScrollIndicator = true // Show vertical scroll indicator
-        return scroll
-    }()
-    
-    private let cardMain: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.spacing = 10
-        return stackView
-    }()
-    
-    private let repsholder: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.spacing = 5
-        return stackView
-    }()
-    
-    private let setsholder: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.spacing = 5
-        return stackView
-    }()
-    
-    private let repsetsholder: UIStackView = {
+    private let targetHolder: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -140,9 +92,9 @@ class ProgressDetailsView: UIView {
         return stackView
     }()
     
-    private let bodypartholder: UIStackView = {
+    private let currentHolder: UIStackView = {
         let stackView = UIStackView()
-        stackView.axis = .vertical
+        stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
         stackView.alignment = .fill
@@ -150,69 +102,59 @@ class ProgressDetailsView: UIView {
         return stackView
     }()
     
+    private let currentTargetHolder: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        stackView.spacing = 10
+        return stackView
+    }()
+    
     override init(frame: CGRect) {
+        collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.register(ProgressViewCell.self, forCellWithReuseIdentifier: ProgressViewCell.reuseIdentifier)
+        collection.backgroundColor = .clear
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        
         super.init(frame: frame)
         
-        repsholder.insertArrangedSubview(repslabel, at: 0)
-        repsholder.insertArrangedSubview(reps, at: 1)
+        targetHolder.insertArrangedSubview(targetRepsLabel, at: 0)
+        targetHolder.insertArrangedSubview(targetReps, at: 1)
         
-        setsholder.insertArrangedSubview(setslabel, at: 0)
-        setsholder.insertArrangedSubview(sets, at: 1)
+        currentHolder.insertArrangedSubview(currentHolder, at: 0)
+        currentHolder.insertArrangedSubview(currentReps, at: 1)
         
-        repsetsholder.insertArrangedSubview(repsholder, at: 0)
-        repsetsholder.insertArrangedSubview(setsholder, at: 1)
-        
-        bodypartholder.insertArrangedSubview(bodypartlabel, at: 0)
-        bodypartholder.insertArrangedSubview(bodypart, at: 1)
-        bodypartholder.insertArrangedSubview(bodypartimg, at: 2)
-        
-        cardMain.insertArrangedSubview(subtitle, at: 0)
-        cardMain.insertArrangedSubview(repsetsholder, at: 1)
-        cardMain.insertArrangedSubview(bodypartholder, at: 2)
-        
-        scroll.addSubview(cardMain)
+        currentTargetHolder.insertArrangedSubview(targetHolder, at: 0)
+        currentTargetHolder.insertArrangedSubview(currentHolder, at: 1)
         
         addSubview(title)
-        addSubview(scroll)
+        addSubview(currentTargetHolder)
+        addSubview(progressLabel)
+        addSubview(progressView)
+        addSubview(collection)
         
         title.widthAnchor.constraint(equalTo: widthAnchor, constant: -30).isActive = true
         title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
-        title.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        title.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
         
-        scroll.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        scroll.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        scroll.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-//        scroll.topAnchor.constraint(equalTo: video.bottomAnchor, constant: 10).isActive = true
+        currentTargetHolder.widthAnchor.constraint(equalTo: widthAnchor, constant: -30).isActive = true
+        currentTargetHolder.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20).isActive = true
+        currentTargetHolder.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
         
-        subtitle.widthAnchor.constraint(equalTo: widthAnchor, constant: -30).isActive = true
-        subtitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
+        progressLabel.widthAnchor.constraint(equalTo: widthAnchor, constant: -30).isActive = true
+        progressLabel.topAnchor.constraint(equalTo: currentTargetHolder.bottomAnchor, constant: 10).isActive = true
+        progressLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
         
-        repslabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5, constant: -15).isActive = true
-        repslabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
+        progressView.widthAnchor.constraint(equalTo: widthAnchor, constant: -30).isActive = true
+        progressView.topAnchor.constraint(equalTo: progressLabel.bottomAnchor, constant: 5).isActive = true
+        progressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
         
-        reps.widthAnchor.constraint(equalTo: repslabel.widthAnchor).isActive = true
-        reps.leadingAnchor.constraint(equalTo: repslabel.leadingAnchor).isActive = true
-        
-        setslabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5, constant: -15).isActive = true
-        setslabel.leadingAnchor.constraint(equalTo: repslabel.trailingAnchor).isActive = true
-        
-        sets.widthAnchor.constraint(equalTo: setslabel.widthAnchor).isActive = true
-        sets.leadingAnchor.constraint(equalTo: setslabel.leadingAnchor).isActive = true
-        
-        bodypartlabel.widthAnchor.constraint(equalTo: widthAnchor, constant: -30).isActive = true
-        bodypartlabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
-        
-        bodypart.widthAnchor.constraint(equalTo: widthAnchor, constant: -30).isActive = true
-        bodypart.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
-        
-        bodypartimg.widthAnchor.constraint(equalTo: widthAnchor, constant: -30).isActive = true
-        bodypartimg.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
-        bodypartimg.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        
-        cardMain.layoutIfNeeded()
-        let dataheight = cardMain.arrangedSubviews.reduce(0) { $0 + $1.frame.height }
-        scroll.contentSize = CGSize(width: scroll.bounds.width, height: dataheight*0.7)
-        
+        collection.topAnchor.constraint(equalTo: progressView.topAnchor, constant: 10).isActive = true
+        collection.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        collection.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        collection.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
     }
     

@@ -26,11 +26,12 @@ final class AuthHandler{
         }
         
         auth.signIn(withEmail: email, password: password) { result, error in
-            if(result == nil && error != nil){
+            guard result != nil && error == nil else {
                 completion(false)
                 return
             }
-            
+
+            UserDefaults.standard.set(result?.user.uid, forKey: "userid")
             completion(true)
         }
     }

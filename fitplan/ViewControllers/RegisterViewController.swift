@@ -31,7 +31,28 @@ class RegisterViewController: UIViewController{
     }
     
     @objc private func registerAction(){
-        let viewcontroller = DetailsViewController()
-        navigationController?.pushViewController(viewcontroller, animated: true)
+        
+        let genderArr = ["Male","Female"]
+        let dob = regView.dob.date.timeIntervalSince1970
+        let gender = genderArr[regView.gender.selectedSegmentIndex]
+        
+        guard let email = regView.email.text,
+              let password = regView.confpassword.text,
+              let firstname = regView.firstName.text,
+              let lastname = regView.lastName.text else {
+            print("no valid data entered")
+            return
+        }
+        
+        AuthHandler.shared.registerFunc(email: email, password: password, firstname: firstname, lastname: lastname, dob: dob, gender: gender){ success in
+            guard success else {
+                print("error registering")
+                return
+            }
+            
+            let viewcontroller = DetailsViewController()
+            self.navigationController?.pushViewController(viewcontroller, animated: true)
+        }
+        
     }
 }

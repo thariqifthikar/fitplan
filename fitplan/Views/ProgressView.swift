@@ -22,7 +22,7 @@ class ProgressView: UIView {
     override init(frame: CGRect) {
         
         collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.register(WorkoutViewCell.self, forCellWithReuseIdentifier: WorkoutViewCell.reuseIdentifier)
+        collection.register(WorkoutProgressViewCell.self, forCellWithReuseIdentifier: WorkoutProgressViewCell.reuseIdentifier)
         collection.backgroundColor = .clear
         collection.translatesAutoresizingMaskIntoConstraints = false
         

@@ -1,15 +1,15 @@
 //
-//  AddProgressView.swift
+//  AddProgressCustomAlertView.swift
 //  fitplan
 //
-//  Created by user230748 on 5/20/23.
+//  Created by user230748 on 5/21/23.
 //
 
 import UIKit
 
-class AddProgressView: UIView {
+class AddProgressCustomAlertView: UIView {
     
-    private let header: UILabel = {
+    public let header: UILabel = {
         let header = UILabel()
         header.font = .systemFont(ofSize: 16, weight: .semibold)
         header.text = "Put in Your Reps and Sets for"
@@ -17,21 +17,12 @@ class AddProgressView: UIView {
         return header
     }()
     
-    private let workoutTitle: UILabel = {
+    public let workoutTitle: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints=false
         label.textColor = .systemOrange
         return label
-    }()
-    
-    public let toolbar: UIToolbar = {
-        let toolbar = UIToolbar()
-        toolbar.barStyle = .default
-        toolbar.isTranslucent = false
-        toolbar.backgroundColor = .none
-        toolbar.translatesAutoresizingMaskIntoConstraints = false
-        return toolbar
     }()
     
     public let reps: UITextField = {
@@ -62,61 +53,33 @@ class AddProgressView: UIView {
         return textfield
     }()
     
-    private let repsSetsHolder: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.backgroundColor = .secondarySystemBackground
-        stackView.layer.cornerRadius = 10
-        stackView.spacing = 10
-        return stackView
-    }()
-    
-    
-    
-    public let continueButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Add Progress", for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 20)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
-        button.translatesAutoresizingMaskIntoConstraints=false
-        button.backgroundColor = .systemOrange
-        return button
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         clipsToBounds=true
         
-        repsSetsHolder.insertArrangedSubview(reps, at: 0)
-        repsSetsHolder.insertArrangedSubview(sets, at: 1)
-        
         addSubview(header)
         addSubview(workoutTitle)
-        addSubview(repsSetsHolder)
-        addSubview(continueButton)
+        addSubview(reps)
+        addSubview(sets)
         
         header.widthAnchor.constraint(equalTo: widthAnchor, constant: -30).isActive = true
         header.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
         header.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
         
         workoutTitle.widthAnchor.constraint(equalTo: widthAnchor, constant: -30).isActive = true
-        workoutTitle.topAnchor.constraint(equalTo: header.topAnchor).isActive = true
+        workoutTitle.topAnchor.constraint(equalTo: header.bottomAnchor).isActive = true
         workoutTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
         
-        repsSetsHolder.widthAnchor.constraint(equalTo: widthAnchor, constant: -30).isActive = true
-        repsSetsHolder.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        repsSetsHolder.topAnchor.constraint(equalTo: workoutTitle.topAnchor, constant: 20)
-        repsSetsHolder.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
+        reps.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5, constant: -20).isActive = true
+        reps.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        reps.topAnchor.constraint(equalTo: workoutTitle.topAnchor, constant: 20).isActive = true
+        reps.leadingAnchor.constraint(equalTo: sets.trailingAnchor, constant: 15).isActive = true
         
-        continueButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        continueButton.widthAnchor.constraint(equalTo: widthAnchor, constant: -30).isActive = true
-        continueButton.topAnchor.constraint(equalTo: repsSetsHolder.bottomAnchor, constant: 10).isActive = true
-        continueButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
-        
+        sets.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5, constant: -20).isActive = true
+        sets.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        sets.topAnchor.constraint(equalTo: workoutTitle.topAnchor, constant: 20).isActive = true
+        sets.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+
     }
     
     required init?(coder: NSCoder) {
@@ -128,5 +91,3 @@ class AddProgressView: UIView {
         
     }
 }
-
-

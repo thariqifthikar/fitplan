@@ -10,6 +10,10 @@
 		EE07447E2A153A5100232A7D /* WorkoutViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE07447D2A153A5100232A7D /* WorkoutViewCell.swift */; };
 		EE0BD21E2A18EE310009D272 /* AddProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BD21D2A18EE310009D272 /* AddProgressViewController.swift */; };
 		EE0BD2202A18EE4F0009D272 /* AddProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BD21F2A18EE4F0009D272 /* AddProgressView.swift */; };
+		EE0BD2232A18FB370009D272 /* ProgressViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BD2222A18FB370009D272 /* ProgressViewDelegate.swift */; };
+		EE0BD2252A1905FB0009D272 /* WorkoutProgressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BD2242A1905FB0009D272 /* WorkoutProgressModel.swift */; };
+		EE0BD2272A191A140009D272 /* ProgressViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0BD2262A191A140009D272 /* ProgressViewCell.swift */; };
+		EE341CA92A19BBE30069C311 /* AddProgressCustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE341CA82A19BBE30069C311 /* AddProgressCustomAlertView.swift */; };
 		EE5D47622A18066B00C7775A /* ProgressDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D47612A18066B00C7775A /* ProgressDetailView.swift */; };
 		EE5D47642A18068600C7775A /* ProgressDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D47632A18068600C7775A /* ProgressDetailViewController.swift */; };
 		EE862CB92A1175E600BC43C3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE862CB82A1175E600BC43C3 /* UserModel.swift */; };
@@ -24,7 +28,7 @@
 		EEB46DF12A0FF4B200165FB9 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = EEB46DF02A0FF4B200165FB9 /* FirebaseDatabase */; };
 		EEB46DF32A0FF4B200165FB9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EEB46DF22A0FF4B200165FB9 /* FirebaseFirestore */; };
 		EEB46DF52A0FF4B200165FB9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = EEB46DF42A0FF4B200165FB9 /* FirebaseStorage */; };
-		EECF1BAD2A17EFF30059E718 /* ProgressViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECF1BAC2A17EFF30059E718 /* ProgressViewCell.swift */; };
+		EECF1BAD2A17EFF30059E718 /* WorkoutProgressViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECF1BAC2A17EFF30059E718 /* WorkoutProgressViewCell.swift */; };
 		EEF6AC122A10F32D00DA9E86 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EEF6AC112A10F32C00DA9E86 /* GoogleService-Info.plist */; };
 		EEF6AC142A11223300DA9E86 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF6AC132A11223300DA9E86 /* LoginView.swift */; };
 		EEF6AC162A11224300DA9E86 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF6AC152A11224300DA9E86 /* RegisterView.swift */; };
@@ -75,6 +79,10 @@
 		EE07447D2A153A5100232A7D /* WorkoutViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewCell.swift; sourceTree = "<group>"; };
 		EE0BD21D2A18EE310009D272 /* AddProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProgressViewController.swift; sourceTree = "<group>"; };
 		EE0BD21F2A18EE4F0009D272 /* AddProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProgressView.swift; sourceTree = "<group>"; };
+		EE0BD2222A18FB370009D272 /* ProgressViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewDelegate.swift; sourceTree = "<group>"; };
+		EE0BD2242A1905FB0009D272 /* WorkoutProgressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutProgressModel.swift; sourceTree = "<group>"; };
+		EE0BD2262A191A140009D272 /* ProgressViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewCell.swift; sourceTree = "<group>"; };
+		EE341CA82A19BBE30069C311 /* AddProgressCustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProgressCustomAlertView.swift; sourceTree = "<group>"; };
 		EE5D47612A18066B00C7775A /* ProgressDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDetailView.swift; sourceTree = "<group>"; };
 		EE5D47632A18068600C7775A /* ProgressDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDetailViewController.swift; sourceTree = "<group>"; };
 		EE862CB82A1175E600BC43C3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -82,7 +90,7 @@
 		EE862CBC2A1177C300BC43C3 /* WorkoutDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailModel.swift; sourceTree = "<group>"; };
 		EE862CBE2A117B0100BC43C3 /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
 		EE862CC02A117FD600BC43C3 /* ProgressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressModel.swift; sourceTree = "<group>"; };
-		EECF1BAC2A17EFF30059E718 /* ProgressViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewCell.swift; sourceTree = "<group>"; };
+		EECF1BAC2A17EFF30059E718 /* WorkoutProgressViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutProgressViewCell.swift; sourceTree = "<group>"; };
 		EEF6AC112A10F32C00DA9E86 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EEF6AC132A11223300DA9E86 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EEF6AC152A11224300DA9E86 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -148,6 +156,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE0BD2212A18FB170009D272 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				EE0BD2222A18FB370009D272 /* ProgressViewDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 		EEB46E022A103A8C00165FB9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,9 +177,11 @@
 				EEF6AC1F2A1122E700DA9E86 /* ProfileView.swift */,
 				EEF6AC382A11271B00DA9E86 /* ProgressView.swift */,
 				EE07447D2A153A5100232A7D /* WorkoutViewCell.swift */,
-				EECF1BAC2A17EFF30059E718 /* ProgressViewCell.swift */,
+				EECF1BAC2A17EFF30059E718 /* WorkoutProgressViewCell.swift */,
 				EE5D47612A18066B00C7775A /* ProgressDetailView.swift */,
 				EE0BD21F2A18EE4F0009D272 /* AddProgressView.swift */,
+				EE0BD2262A191A140009D272 /* ProgressViewCell.swift */,
+				EE341CA82A19BBE30069C311 /* AddProgressCustomAlertView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -176,6 +194,7 @@
 				EE862CBC2A1177C300BC43C3 /* WorkoutDetailModel.swift */,
 				EE862CBE2A117B0100BC43C3 /* ScheduleModel.swift */,
 				EE862CC02A117FD600BC43C3 /* ProgressModel.swift */,
+				EE0BD2242A1905FB0009D272 /* WorkoutProgressModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -232,6 +251,7 @@
 			children = (
 				EEF6AC322A1124ED00DA9E86 /* Handlers */,
 				EEF6AC112A10F32C00DA9E86 /* GoogleService-Info.plist */,
+				EE0BD2212A18FB170009D272 /* Delegates */,
 				EEB46E042A103A9F00165FB9 /* ViewControllers */,
 				EEB46E032A103A9600165FB9 /* Models */,
 				EEB46E022A103A8C00165FB9 /* Views */,
@@ -405,6 +425,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE0BD2252A1905FB0009D272 /* WorkoutProgressModel.swift in Sources */,
 				EE862CC12A117FD600BC43C3 /* ProgressModel.swift in Sources */,
 				EEF6AC1E2A1122C700DA9E86 /* CustomSchedules.swift in Sources */,
 				EEF6AC1C2A11228D00DA9E86 /* WorkoutDetailsView.swift in Sources */,
@@ -418,8 +439,10 @@
 				EEF6AC2C2A1123C600DA9E86 /* ProfileViewController.swift in Sources */,
 				EEF6AC2A2A1123B500DA9E86 /* CustomScheduleViewController.swift in Sources */,
 				EE862CBB2A11772000BC43C3 /* WorkoutModel.swift in Sources */,
+				EE341CA92A19BBE30069C311 /* AddProgressCustomAlertView.swift in Sources */,
 				EEF6AC1A2A11227200DA9E86 /* DetailsView.swift in Sources */,
 				EE862CB92A1175E600BC43C3 /* UserModel.swift in Sources */,
+				EE0BD2232A18FB370009D272 /* ProgressViewDelegate.swift in Sources */,
 				EEF6AC2F2A11243500DA9E86 /* TabBarViewController.swift in Sources */,
 				EE0BD21E2A18EE310009D272 /* AddProgressViewController.swift in Sources */,
 				EEF6AC392A11271B00DA9E86 /* ProgressView.swift in Sources */,
@@ -429,8 +452,9 @@
 				EE862CBF2A117B0100BC43C3 /* ScheduleModel.swift in Sources */,
 				EE07447E2A153A5100232A7D /* WorkoutViewCell.swift in Sources */,
 				EEF6AC182A11226500DA9E86 /* HomeView.swift in Sources */,
-				EECF1BAD2A17EFF30059E718 /* ProgressViewCell.swift in Sources */,
+				EECF1BAD2A17EFF30059E718 /* WorkoutProgressViewCell.swift in Sources */,
 				EE862CBD2A1177C300BC43C3 /* WorkoutDetailModel.swift in Sources */,
+				EE0BD2272A191A140009D272 /* ProgressViewCell.swift in Sources */,
 				EEF6AC142A11223300DA9E86 /* LoginView.swift in Sources */,
 				EEFB61442A0FDC9A00C42223 /* SceneDelegate.swift in Sources */,
 				EE5D47642A18068600C7775A /* ProgressDetailViewController.swift in Sources */,

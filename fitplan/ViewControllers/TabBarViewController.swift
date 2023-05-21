@@ -12,6 +12,8 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("TabBarVC")
+        
         let home = HomeViewController()
         home.title = "Home"
         home.navigationItem.largeTitleDisplayMode = .always
@@ -37,6 +39,7 @@ class TabBarViewController: UITabBarController {
         navProgress.tabBarItem = UITabBarItem(title: "Progress", image: UIImage(systemName: "chart.bar"), tag: 4)
                 
         setViewControllers([navHome, navProgress, navSchedules, navProfile], animated: true)
+        print("VCs Set")
     }
 
 
