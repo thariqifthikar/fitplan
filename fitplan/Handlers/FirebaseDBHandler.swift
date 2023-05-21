@@ -84,10 +84,12 @@ final class FirebaseDBHandler{
                     return
                 }
                 
-                guard let data = snapshot.documents[0].data() else {
+                guard !snapshot.documents.isEmpty else {
                     completion(false)
                     return
                 }
+                
+                let data = snapshot.documents[0].data()
                 
                 guard let _ = data["height"] as? Float,
                       let _ = data["weight"] as? Float,

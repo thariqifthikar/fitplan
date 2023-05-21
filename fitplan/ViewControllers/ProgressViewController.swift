@@ -96,16 +96,18 @@ class ProgressViewController: UIViewController, UICollectionViewDataSource, UICo
         
         workoutTitle.widthAnchor.constraint(equalTo: alertViewController.view.widthAnchor, constant: -30).isActive = true
         workoutTitle.topAnchor.constraint(equalTo: alertViewController.view.topAnchor).isActive = true
-        workoutTitle.leadingAnchor.constraint(equalTo: alertViewController.view.leadingAnchor, constant: 15).isActive = true
+        workoutTitle.centerXAnchor.constraint(equalTo: alertViewController.view.centerXAnchor).isActive = true
         
         reps.widthAnchor.constraint(equalTo: alertViewController.view.widthAnchor, constant: -30).isActive = true
         reps.heightAnchor.constraint(equalToConstant: 50).isActive = true
         reps.topAnchor.constraint(equalTo: sets.bottomAnchor, constant: 10).isActive = true
         reps.bottomAnchor.constraint(equalTo: alertViewController.view.bottomAnchor, constant: -20).isActive = true
+        reps.centerXAnchor.constraint(equalTo: alertViewController.view.centerXAnchor).isActive = true
         
         sets.widthAnchor.constraint(equalTo: alertViewController.view.widthAnchor, constant: -30).isActive = true
         sets.heightAnchor.constraint(equalToConstant: 50).isActive = true
         sets.topAnchor.constraint(equalTo: workoutTitle.bottomAnchor, constant: 20).isActive = true
+        sets.centerXAnchor.constraint(equalTo: alertViewController.view.centerXAnchor).isActive = true
         
         workoutTitle.text = workouts[indexPath.item].title
         

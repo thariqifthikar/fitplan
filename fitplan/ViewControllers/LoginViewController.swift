@@ -51,17 +51,10 @@ class LoginViewController: UIViewController{
                     let vc: UIViewController
                     if hasDetails {
                         
-                        FirebaseDBHandler.shared.setUserDetails(userid: userid){ success in
-                            let vc: UIViewController
-                            guard success else {
-                                print("error setting defaults")
-                                return
-                            }
-                            
-                            vc = TabBarViewController()
-                            vc.modalPresentationStyle = .fullScreen
-                            self?.present(vc, animated: true)
-                        }
+                        vc = TabBarViewController()
+                        vc.modalPresentationStyle = .fullScreen
+                        self?.present(vc, animated: true)
+                        
                     } else {
                         vc = DetailsViewController()
                         vc.modalPresentationStyle = .fullScreen
